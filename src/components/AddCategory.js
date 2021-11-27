@@ -6,10 +6,13 @@ export const AddCategory = ({ setCategories }) => {
 
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
+
+    console.log("HandleInputChange llamado");
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log("HandleSubmit", inputValue);
 
     if (inputValue.trim().length > 2) {
       setCategories((c) => [inputValue, ...c]);
@@ -19,11 +22,12 @@ export const AddCategory = ({ setCategories }) => {
 
   return (
     <form onSubmit={handleSubmit}>
+      <p>{inputValue}</p>
       <input type="text" value={inputValue} onChange={handleInputChange} />
     </form>
   );
 };
 
-AddCategory.prototypes = {
+AddCategory.propTypes = {
   setCategories: PropTypes.func.isRequired,
 };
